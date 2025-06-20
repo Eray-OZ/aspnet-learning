@@ -1,4 +1,7 @@
 using ApiCamp.WebApi.Context;
+using ApiCamp.WebApi.Entities;
+using ApiCamp.WebApi.ValidationRules;
+using FluentValidation;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +15,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApiContext>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+builder.Services.AddScoped<IValidator<Product>, ProductValidator>();
 
 //<<<<<
 

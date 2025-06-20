@@ -15,8 +15,8 @@ namespace ApiCamp.WebApi.ValidationRules {
 
             RuleFor(x => x.Price)
                 .NotEmpty().WithMessage("::: Please Provide a Product Price!")
-                .LessThan(0).WithMessage("::: Price Must Be Greater Than 0$!")
-                .GreaterThan(1000).WithMessage("::: Price Can Not Be Greater Than 1000$");
+                .GreaterThan(0).WithMessage("::: Price Must Be Greater Than 0$!")
+                .LessThan(1000).WithMessage("::: Price Can Not Be Greater Than 1000$");
 
             RuleFor(x => x.ProductDescription)
                 .NotEmpty().WithMessage("::: Please Provide a Product Description");
