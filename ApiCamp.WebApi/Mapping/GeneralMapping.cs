@@ -1,5 +1,6 @@
 ﻿using ApiCamp.WebApi.Dtos.FeatureDtos;
 using ApiCamp.WebApi.Dtos.MessageDtos;
+using ApiCamp.WebApi.Dtos.ProductDtos;
 using ApiCamp.WebApi.Entities;
 using AutoMapper;
 
@@ -22,6 +23,14 @@ namespace ApiCamp.WebApi.Mapping
             CreateMap<Message, CreateMessageDto>().ReverseMap();
             CreateMap<Message, UpdateMessageDto>().ReverseMap();
             CreateMap<Message, GetByIdMessageDto>().ReverseMap();
+
+
+            CreateMap<Product, CreateProductDto>().ReverseMap();
+            CreateMap<Product, ResultProductWithCategoryDto>()
+            .ForMember(dto => dto.CategoryName, opt => opt.MapFrom(product => product.Category.CategoryName))
+            .ReverseMap();
+
+
         }
     }
 }

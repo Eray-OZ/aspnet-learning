@@ -1,8 +1,11 @@
 ﻿using ApiCamp.WebApi.Context;
+using ApiCamp.WebApi.Dtos.ProductDtos;
 using ApiCamp.WebApi.Entities;
+using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiCamp.WebApi.Controllers
 {
@@ -13,11 +16,13 @@ namespace ApiCamp.WebApi.Controllers
 
         private readonly IValidator<Product> _validator;
         private readonly ApiContext _context;
+        private readonly IMapper _mapper;
 
-        public ProductsController(IValidator<Product> validator, ApiContext context)
+        public ProductsController(IValidator<Product> validator, ApiContext context, IMapper mapper)
         {
             _validator = validator;
             _context = context;
+            _mapper = mapper;
         }
 
 
@@ -106,6 +111,51 @@ namespace ApiCamp.WebApi.Controllers
 
                 return Ok("ID: " + product.ProductId + " Updated Successfully");
             }
+        }
+
+
+
+
+        [HttpPost("CreateProductWithCategory")]
+        public IActionResult CreateProductWithCategory(CreateProductDto createProductDto) 
+        {
+
+            var product = _mapper.Map<Product>(createProductDto);
+
+
+            var validationResult = _validator.Validate(product);
+
+
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors.Select(x => x.ErrorMessage));
+            }
+
+
+            else
+            {
+
+                _context.Products.Add(product);
+
+                _context.SaveChanges();
+
+                return Ok("Created Successfully");
+            }
+
+        }
+
+
+
+
+
+        [HttpGet("ProductListWithCategory")]
+        public IActionResult ProductListWithCategory()
+        {
+
+            var values = _context.Products.Include(x => x.Category).ToList();
+
+
+            return Ok(_mapper.Map<List<ResultProductWithCategoryDto>>(values));
         }
 
 

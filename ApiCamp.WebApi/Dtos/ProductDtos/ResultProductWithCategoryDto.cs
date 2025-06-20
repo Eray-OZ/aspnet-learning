@@ -1,7 +1,10 @@
-﻿namespace ApiCamp.WebApi.Entities
+﻿using ApiCamp.WebApi.Entities;
+
+namespace ApiCamp.WebApi.Dtos.ProductDtos
 {
-    public class Product
+    public class ResultProductWithCategoryDto
     {
+
         public int ProductId { get; set; }
 
         public string ProductName { get; set; }
@@ -17,8 +20,7 @@
 
         public int? CategoryId { get; set; }
 
-        public Category Category { get; set; }
-
+        public string CategoryName { get; set; }
 
     }
 }
