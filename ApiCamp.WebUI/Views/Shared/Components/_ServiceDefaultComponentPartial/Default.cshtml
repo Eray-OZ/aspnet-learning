@@ -1,4 +1,10 @@
-﻿        <!-- Why Us Section -->
+﻿<!-- Why Us Section -->
+@model List<ApiCamp.WebUI.Dtos.ServiceDtos.ResultServiceDto>
+
+
+
+
+
 <section id="why-us" class="why-us section light-background">
 
     <div class="container">
@@ -9,8 +15,24 @@
                 <div class="why-box">
                     <h3>Why Choose Yummy</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                        Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad corporis.
+                        At Yummy, we don’t just serve food — we serve experiences. Here's why our guests keep coming back:
+                        <br />
+                        🍽 Fresh Ingredients, Every Day
+                        We believe great taste starts with great ingredients. That’s why we handpick fresh, locally-sourced produce and high-quality meats daily.
+                        <br />
+                        👨‍🍳 Passionate Chefs, Authentic Recipes
+                        Our skilled chefs blend tradition with creativity to bring you delicious meals inspired by global flavors — all made from scratch.
+                        <br />
+                        ⏱ Fast & Friendly Service
+                        Your time matters. Whether you dine in or take out, we promise quick service with a warm smile.
+                        <br />
+                        🌿 Cozy Atmosphere
+                        From our welcoming decor to the relaxing ambiance, Yummy is the perfect spot for a casual lunch, family dinner, or a night out with friends.
+                        <br />
+                        ⭐ Customer Satisfaction is Our Priority
+                        We value every guest and strive to exceed expectations with every plate we serve.
+                        <br />
+                        Come taste the difference — only at Yummy.
                     </p>
                     <div class="text-center">
                         <a href="#" class="more-btn"><span>Learn More</span> <i class="bi bi-chevron-right"></i></a>
@@ -18,32 +40,25 @@
                 </div>
             </div><!-- End Why Box -->
 
+
+
+
             <div class="col-lg-8 d-flex align-items-stretch">
                 <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
 
-                    <div class="col-xl-4">
-                        <div class="icon-box d-flex flex-column justify-content-center align-items-center">
-                            <i class="bi bi-clipboard-data"></i>
-                            <h4>Corporis voluptates officia eiusmod</h4>
-                            <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
-                        </div>
-                    </div><!-- End Icon Box -->
+                    @foreach (var item in Model)
+                    {
 
-                    <div class="col-xl-4" data-aos="fade-up" data-aos-delay="300">
-                        <div class="icon-box d-flex flex-column justify-content-center align-items-center">
-                            <i class="bi bi-gem"></i>
-                            <h4>Ullamco laboris ladore lore pan</h4>
-                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                        <div class="col-xl-4">
+                            <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                                <i class="@item.IconUrl"></i>
+                                <h4>@item.Title</h4>
+                                <p>@item.Description</p>
+                            </div>
                         </div>
-                    </div><!-- End Icon Box -->
 
-                    <div class="col-xl-4" data-aos="fade-up" data-aos-delay="400">
-                        <div class="icon-box d-flex flex-column justify-content-center align-items-center">
-                            <i class="bi bi-inboxes"></i>
-                            <h4>Labore consequatur incidid dolore</h4>
-                            <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
-                        </div>
-                    </div><!-- End Icon Box -->
+                        <!-- End Icon Box -->
+                    }
 
                 </div>
             </div>
